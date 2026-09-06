@@ -21,7 +21,9 @@ const box = document.querySelector('.hidden');
 let content = document.querySelector('.contentButton');
 document.querySelector('.contentButton').addEventListener('click', () => {
   box.classList.toggle('unhidden');
-  if (box.class = 'unhidden') {
+  if (box.classList.contains('unhidden')) {
     content.textContent = 'Скрыть содержимое';
-  };
+  } else {
+    content.textContent = 'Показать содержимое'
+  }
 })
