@@ -1,3 +1,20 @@
+body {
+  margin: 0px 100px;
+}
+
+.theFirstTask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  margin-bottom: 30px;
+}
+
+.greeting {
+  padding: 0;
+  margin: 0;
+}
+
 .buttonMinus,
 .buttonPlus {
   display: flex;
@@ -22,6 +39,7 @@
   padding: 20px;
   border: none;
   border-radius: 45px;
+  margin-bottom: 30px;
 }
 
 .buttons {
@@ -40,4 +58,39 @@
   padding: 30px;
   border: none;
   border-radius: 45px;
+}
+
+.theThirdTask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background: black;
+  padding: 20px;
+  border: none;
+  border-radius: 45px;
+  margin-bottom: 30px;
+}
+
+.hidden {
+  background: #00FF00;
+  font-size: 3rem;
+  padding: 30px;
+  border: none;
+  border-radius: 45px;
+  display: none;
+}
+
+.contentButton {
+  background: #00FF00;
+  padding: 30px;
+  border: none;
+  border-radius: 45px;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.unhidden {
+  display: block;
 }

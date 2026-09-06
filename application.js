@@ -1,6 +1,8 @@
+//The first task
 const greeting = document.querySelector('.greeting');
 greeting.textContent = 'Доброго времени суток!'
 
+//The second task
 let counter = 0
 const outer = document.querySelector('.counter');
 document.querySelector('.buttonPlus').addEventListener('click', () => {
@@ -12,4 +14,14 @@ document.querySelector('.buttonMinus').addEventListener('click', () => {
     counter = counter - 100000;
     outer.textContent = counter;
   }
+})
+
+//The third task
+const box = document.querySelector('.hidden');
+let content = document.querySelector('.contentButton');
+document.querySelector('.contentButton').addEventListener('click', () => {
+  box.classList.toggle('unhidden');
+  if (box.class = 'unhidden') {
+    content.textContent = 'Скрыть содержимое';
+  };
 })
