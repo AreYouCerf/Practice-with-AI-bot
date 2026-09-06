@@ -27,3 +27,26 @@ document.querySelector('.contentButton').addEventListener('click', () => {
     content.textContent = 'Показать содержимое'
   }
 })
+
+//The fourth task
+const TFT = document.querySelector('.theFourthTask');
+const newDiv = document.createElement('div');
+newDiv.textContent = 'Военные конфликты 20-го века';
+newDiv.className = 'armedClashes';
+TFT.appendChild(newDiv);
+const newUl = document.createElement('ul');
+newUl.className = 'list';
+TFT.appendChild(newUl);
+const items = [
+  'Ирано-иракская война 1980-1988',
+  'Шестидневная война 05.06.1967 - 10.06.1967',
+  'Война в Персидском заливе 1990-1991',
+  'Афганская война 1979-1989',
+  'Вьетнамская война 1955-1975'
+];
+const list = document.querySelector('.list');
+items.forEach((item) => {
+  const li = document.createElement('li');
+  li.textContent = item;
+  list.append(li);
+})

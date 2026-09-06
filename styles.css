@@ -94,3 +94,38 @@ body {
 .unhidden {
   display: block;
 }
+
+.theFourthTask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background: black;
+  padding: 20px;
+  border: none;
+  border-radius: 45px;
+  margin-bottom: 30px;
+}
+
+.list {
+  background: #00FF00;
+  border: none;
+  border-radius: 14px;
+  padding: 10px;
+  margin: 0;
+  list-style-type: none;
+  font-size: 2rem;
+}
+
+.theFourthTaskContains {
+  display: flex;
+}
+
+.armedClashes {
+  background: #00FF00;
+  font-size: 3rem;
+  border: none;
+  border-radius: 14px;
+  padding: 10px;
+}
