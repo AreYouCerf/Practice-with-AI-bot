@@ -30,18 +30,22 @@ document.querySelector('.contentButton').addEventListener('click', () => {
 
 //The fourth task
 const TFT = document.querySelector('.theFourthTask');
+//создание нового div
 const newDiv = document.createElement('div');
 newDiv.textContent = 'Военные конфликты 20-го века';
 newDiv.className = 'armedClashes';
 TFT.appendChild(newDiv);
+//создание нового input
 const newInput = document.createElement('input');
 newInput.className = 'findWarInput';
 newInput.type = 'text';
 newInput.placeholder = 'Введите поисковый запрос...'
 TFT.appendChild(newInput);
+//создание нового списка ul
 const newUl = document.createElement('ul');
 newUl.className = 'list';
 TFT.appendChild(newUl);
+//создание массива
 const items = [
   'Ирано-иракская война 1980-1988',
   'Шестидневная война 05.06.1967 - 10.06.1967',
@@ -49,14 +53,9 @@ const items = [
   'Афганская война 1979-1989',
   'Вьетнамская война 1955-1975'
 ];
-const list = document.querySelector('.list');
-items.forEach((item) => {
-  const li = document.createElement('li');
-  li.textContent = item;
-  list.append(li);
-})
-
-//The fifth task
+//ссылка на ul после его добавления в DOM
+const list = newUl;
+//функция рендера массива и его вывод в виде списка ul
 function render(array) {
   list.replaceChildren();
   array.forEach((item) => {
@@ -65,9 +64,11 @@ function render(array) {
     list.append(li);
   });
 }
-
+//стартовая загрузка массива с учетом того, что input пустой, следовательно будет выведен весь массив, т.к. пустая строка '' -всегда true
+render(items)
+//фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
 newInput.addEventListener('input', () => {
-  const rend = newInput.value.toLowerCase();
+  const query = newInput.value.toLowerCase();
   render(items.filter((item) =>
-    item.toLowerCase().includes(rend)));
+    item.toLowerCase().includes(query)));
 });
