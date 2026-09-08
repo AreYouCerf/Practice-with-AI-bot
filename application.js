@@ -86,21 +86,58 @@ newInput.addEventListener('input', () => {
 })
 
 //THE FIFTH TASK***************************************************************************************
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.clientInfo')
+  if (!form) return
 
-//функция создания массива из объектов с несколькими свойствами и записи в placeholder значения свойства text в соответствующие поля input
-function placeholders() {
-  const ids = [
-    { id: 'yourSurname', text: 'Иванов' },
-    { id: 'yourName', text: 'Иван' },
-    { id: 'yourPatronymic', text: 'Иванович' },
-    { id: 'yourEmail', text: 'ivanivanov@example.com' }
-  ]
+  const placeholders = {
+    '#yourSurname': 'Иванов',
+    '#yourName': 'Иван',
+    '#yourPatronymic': 'Иванович',
+    '#yourEmail': 'ivanivanov@example.com'
+  }
 
-  ids.forEach(({ id, text }) => {
-    const formInput = document.getElementById(id)
-    if (formInput) formInput.placeholder = text
+  Object.entries(placeholders).forEach(([selector, text]) => {
+    const input = document.querySelector(selector)
+    if (input) input.placeholder = text
   })
-}
 
-//вызов функции после загрузки DOM
-document.addEventListener('DOMContentLoaded', placeholders)
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const surname = document.getElementById('yourSurname').value.trim()
+    const name = document.getElementById('yourName').value.trim()
+    const patronymic = document.getElementById('yourPatronymic').value.trim()
+    const email = document.getElementById('yourEmail').value.trim()
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      alert('Пожалуйста, укажите корректный email.')
+      return
+    }
+
+    if (!name || !surname || !patronymic) {
+      alert('Имя, фамилия и отчество обязательны для заполнения.')
+      return
+    }
+
+    const data = {
+      surname,
+      name,
+      patronymic,
+      email
+    }
+
+    console.log('Данные формы:', data)
+
+    const originalBtnText = form.querySelector('button[type="submit"]').textContent
+    const btn = form.querySelector('button[type="submit"]')
+    btn.textContent = 'Отправлено!'
+    btn.style.opacity = '0.7'
+
+    setTimeout(() => {
+      btn.textContent = originalBtnText
+      btn.style.opacity = '1'
+      form.reset()
+    }, 2000)
+  })
+})
