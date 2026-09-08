@@ -34,6 +34,11 @@ const newDiv = document.createElement('div');
 newDiv.textContent = 'Военные конфликты 20-го века';
 newDiv.className = 'armedClashes';
 TFT.appendChild(newDiv);
+const newInput = document.createElement('input');
+newInput.className = 'findWarInput';
+newInput.type = 'text';
+newInput.placeholder = 'Введите поисковый запрос...'
+TFT.appendChild(newInput);
 const newUl = document.createElement('ul');
 newUl.className = 'list';
 TFT.appendChild(newUl);
@@ -50,3 +55,19 @@ items.forEach((item) => {
   li.textContent = item;
   list.append(li);
 })
+
+//The fifth task
+function render(array) {
+  list.replaceChildren();
+  array.forEach((item) => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    list.append(li);
+  });
+}
+
+newInput.addEventListener('input', () => {
+  const rend = newInput.value.toLowerCase();
+  render(items.filter((item) =>
+    item.toLowerCase().includes(rend)));
+});

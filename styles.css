@@ -129,3 +129,11 @@ body {
   border-radius: 14px;
   padding: 10px;
 }
+
+.findWarInput {
+  background: #C0C0C0;
+  border: none;
+  border-radius: 14px;
+  padding: 10px;
+  min-width: 500px;
+}
