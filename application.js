@@ -1,8 +1,10 @@
-//The first task
+//THE FIRST TASK***************************************************************************************
+
 const greeting = document.querySelector('.greeting');
 greeting.textContent = 'Доброго времени суток!'
 
-//The second task
+//THE SECOND TASK***************************************************************************************
+
 let counter = 0
 const outer = document.querySelector('.counter');
 document.querySelector('.buttonPlus').addEventListener('click', () => {
@@ -16,7 +18,8 @@ document.querySelector('.buttonMinus').addEventListener('click', () => {
   }
 })
 
-//The third task
+//THE THIRD TASK***************************************************************************************
+
 const box = document.querySelector('.hidden');
 let content = document.querySelector('.contentButton');
 document.querySelector('.contentButton').addEventListener('click', () => {
@@ -28,7 +31,8 @@ document.querySelector('.contentButton').addEventListener('click', () => {
   }
 })
 
-//The fourth task
+//THE FOURTH TASK***************************************************************************************
+
 const TFT = document.querySelector('.theFourthTask');
 //создание нового div
 const newDiv = document.createElement('div');
@@ -64,7 +68,7 @@ function render(array) {
     list.append(li);
   });
 }
-//стартовая загрузка массива с учетом того, что input пустой, следовательно будет выведен весь массив, т.к. пустая строка '' -всегда true
+//стартовая загрузка массива с учетом того, что input пустой, следовательно будет выведен весь массив, т.к. любая строка содержит пустой кусок
 render(items)
 //фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
 newInput.addEventListener('input', () => {
@@ -72,3 +76,23 @@ newInput.addEventListener('input', () => {
   render(items.filter((item) =>
     item.toLowerCase().includes(query)));
 });
+
+//THE FIFTH TASK***************************************************************************************
+
+//функция создания массива из объектов с несколькими свойствами и записи в placeholder значения свойства text в соответствующие поля input
+function placeholders() {
+  const ids = [
+    { id: 'yourName', text: 'Иван' },
+    { id: 'yourSurname', text: 'Иванов' },
+    { id: 'yourPatronymic', text: 'Иванович' },
+    { id: 'yourEmail', text: 'ForExample@example.com' }
+  ];
+
+  ids.forEach(({ id, text }) => {
+    const formInput = document.getElementById(id);
+    if (formInput) formInput.placeholder = text;
+  });
+};
+
+//вызов функции после загрузки DOM
+document.addEventListener('DOMContentLoaded', placeholders);
