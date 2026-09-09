@@ -53,6 +53,20 @@ const newUl = document.createElement('ul')
 newUl.className = 'list'
 TFT.appendChild(newUl)
 
+//создание input для ввода новых данных массива
+const addWarInput = document.createElement('input')
+addWarInput.className = 'addWarInput'
+addWarInput.type = 'text'
+addWarInput.placeholder = 'Добавьте событие в список выше...'
+TFT.appendChild(addWarInput)
+
+//создание кнопки для добавления данных в массив items
+const addWarButton = document.createElement('button')
+addWarButton.className = 'addWarButton'
+addWarButton.type = 'button'
+addWarButton.textContent = 'Добавить'
+TFT.appendChild(addWarButton)
+
 //создание массива
 const items = [
   'Ирано-иракская война 1980-1988',
@@ -85,7 +99,17 @@ newInput.addEventListener('input', () => {
     item.toLowerCase().includes(query)))
 })
 
+//обработка клика по кнопке addWarButton с изменением массива в памяти и ререндером списка из перезаписанного массива
+addWarButton.addEventListener('click', () => {
+  const text = addWarInput.value.trim()
+  if (!text) return
+  items.push(text)
+  render(items)
+  addWarInput.value = ''
+})
+
 //THE FIFTH TASK***************************************************************************************
+
 /* document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.clientInfo')
   if (!form) return
@@ -144,6 +168,7 @@ newInput.addEventListener('input', () => {
 
 
 //THE FIFTH TASK rework***************************************************************************************
+
 document.addEventListener('DOMContentLoaded', () => {
 
   //Поиск form для ввода и span для вывода ошибки

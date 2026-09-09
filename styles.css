@@ -140,7 +140,7 @@ button {
   border: none;
   border-radius: 45px;
   margin: 0 auto 30px auto;
-  min-height: 477px;
+  min-height: 711px;
   color: #2D1B69;
   max-width: 800px;
 }
@@ -155,10 +155,6 @@ button {
   margin: 0;
   list-style-type: none;
   font-size: 2rem;
-}
-
-.theFourthTaskContains {
-  display: flex;
 }
 
 .armedClashes {
@@ -267,4 +263,35 @@ button {
 
 .resultOfSubmitView {
   display: block;
+}
+
+.addWarButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #C8FF3D;
+  border: none;
+  border-radius: 45px;
+  padding: 20px;
+  width: 100%;
+  font-size: 2rem;
+  max-height: fit-content;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: #2D1B69;
+}
+
+.addWarButton:hover {
+  transform: scale(1.02);
+}
+
+.addWarInput {
+  box-sizing: border-box;
+  width: 100%;
+  background: #C0C0C0;
+  border: none;
+  border-radius: 45px;
+  padding: 20px;
+  color: #2D1B69;
+  font-size: 2rem;
 }
