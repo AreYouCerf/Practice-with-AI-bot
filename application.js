@@ -99,13 +99,29 @@ newInput.addEventListener('input', () => {
     item.toLowerCase().includes(query)))
 })
 
-//обработка клика по кнопке addWarButton с изменением массива в памяти и ререндером списка из перезаписанного массива
+/* обработка клика по кнопке addWarButton с изменением массива в памяти и ререндером списка из перезаписанного массива
+с реиспользованием ранее созданного фильтра */
 addWarButton.addEventListener('click', () => {
   const text = addWarInput.value.trim()
   if (!text) return
   items.push(text)
-  render(items)
+  const query = newInput.value.toLowerCase()
+  render(items.filter((item) =>
+    item.toLowerCase().includes(query)))
   addWarInput.value = ''
+})
+
+//обработка клика внутри списка ul по ближайшему дочернему li
+list.addEventListener('click', () => {
+  const li = event.target.closest('li')
+  if (!li) return
+  const text = li.textContent
+  const i = items.indexOf(text)
+  if (i === -1) return
+  items.splice(i, 1) //splice вырезает данные из массива
+  const query = newInput.value.toLowerCase() //реюз фильтра
+  render(items.filter((item) =>
+    item.toLowerCase().includes(query)))
 })
 
 //THE FIFTH TASK***************************************************************************************
