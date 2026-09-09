@@ -86,7 +86,7 @@ newInput.addEventListener('input', () => {
 })
 
 //THE FIFTH TASK***************************************************************************************
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.clientInfo')
   if (!form) return
 
@@ -138,6 +138,83 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = originalBtnText
       btn.style.opacity = '1'
       form.reset()
+    }, 2000)
+  })
+}) */
+
+
+//THE FIFTH TASK rework***************************************************************************************
+document.addEventListener('DOMContentLoaded', () => {
+
+  //Поиск form для ввода и span для вывода ошибки
+  const clientInfo = document.querySelector('.clientInfo')
+  const resultOfSubmit = document.querySelector('.resultOfSubmit')
+  if (!clientInfo || !resultOfSubmit) return
+
+  //Вставка placeholder в соответсвующие input по #
+  const placeholders = {
+    '#yourSurname': 'Иванов',
+    '#yourName': 'Иван',
+    '#yourPatronymic': 'Иванович',
+    '#yourEmail': 'ivanivanov@example.com'
+  }
+  Object.entries(placeholders).forEach(([selector, text]) => {
+    const input = document.querySelector(selector)
+    if (input) input.placeholder = text
+  })
+
+  //создания события form submit
+  clientInfo.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const surname = document.getElementById('yourSurname').value.trim()
+    const name = document.getElementById('yourName').value.trim()
+    const patronymic = document.getElementById('yourPatronymic').value.trim()
+    const email = document.getElementById('yourEmail').value.trim()
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    let error = false
+    let errorText = ''
+
+    //Проверка email
+    if (!emailRegex.test(email)) {
+      error = true
+      errorText = 'Пожалуйста, укажите корректный email.'
+    }
+
+    //Проверка заполненности ФИО в том случае, если email прошел проверку
+    else if (!name || !surname || !patronymic) {
+      error = true
+      errorText = 'Имя, фамилия и отчество обязательны для заполнения.'
+    }
+
+    //Вывод ошибок в span в соответствии с вышеперечисленными условиями
+    if (error) {
+      resultOfSubmit.textContent = errorText
+      resultOfSubmit.classList.add('resultOfSubmitView')
+      return
+    }
+
+    //Очистка span в случае отсутствия ошибок
+    else {
+      resultOfSubmit.classList.remove('resultOfSubmitView')
+      resultOfSubmit.textContent = ''
+    }
+
+    //Сбор данных заполненных в form и вывод в консоль
+    const data = { surname, name, patronymic, email }
+    console.log('Данные формы:', data)
+
+    //Изменение текста button и opacity в случае прохождения проверок и отправки form
+    const btn = clientInfo.querySelector('button[type="submit"]')
+    const originalButtonText = btn.textContent
+    btn.textContent = 'Отправлено!'
+    btn.style.opacity = '0.7'
+
+    //Возврат form к первоначальному состоянию с задержкой 2с
+    setTimeout(() => {
+      btn.textContent = originalButtonText
+      btn.style.opacity = '1'
+      clientInfo.reset()
+      resultOfSubmit.classList.remove('resultOfSubmitView')
     }, 2000)
   })
 })

@@ -195,7 +195,6 @@ button {
   font-size: 1.5rem;
   background: #C8FF3D;
   padding: 20px;
-  margin-bottom: 20px;
   border: none;
   border-radius: 45px;
   width: 100%;
@@ -207,7 +206,8 @@ button {
   justify-content: center;
   align-items: center;
   max-width: 800px;
-  margin: 0 auto 30px auto;
+  margin: 0 auto 40px auto;
+  position: relative;
 }
 
 .clientInfo button {
@@ -247,4 +247,24 @@ button {
 
 .clientInfo label {
   font-size: 3rem;
+}
+
+.resultOfSubmit {
+  box-sizing: border-box;
+  position: absolute;
+  top: 735px;
+  left: auto;
+  background: #C0C0C0;
+  border: none;
+  border-radius: 45px;
+  padding: 10px 20px;
+  margin: 0;
+  display: none;
+  font-size: 1.25rem;
+  color: #FF0000;
+  pointer-events: none;
+}
+
+.resultOfSubmitView {
+  display: block;
 }
