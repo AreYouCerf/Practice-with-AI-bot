@@ -103,7 +103,7 @@ function render(array) {
   list.replaceChildren()
   array.forEach((item) => {
     const li = document.createElement('li')
-    li.textContent = item.title + ' (' + item.years + ')'
+    li.textContent = item.title + ' (Даты начала и завешения: ' + item.years + ')'
     list.append(li)
   })
 }
@@ -111,11 +111,27 @@ function render(array) {
 //стартовая загрузка массива с учетом того, что input пустой, следовательно будет выведен весь массив, т.к. любая строка содержит пустой кусок
 render(items)
 
-//фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
-newInput.addEventListener('input', () => {
+//функция фильтра содержимого
+function filtered() {
   const query = newInput.value.toLowerCase()
   render(items.filter((item) =>
     item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query)))
+}
+
+//функция сохранения и ререндера массива с изпользованием данных из кеша браузера
+function savedArray() {
+  localStorage.setItem('wars', JSON.stringify(items))
+  const savedArr = localStorage.getItem('wars')
+  if (savedArr) {
+    items.splice(0, items.length,
+      ...JSON.parse(savedArr)
+    )
+  }
+}
+
+//фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
+newInput.addEventListener('input', () => {
+  filtered()
 })
 
 /* обработка клика по кнопке addWarButton с изменением массива в памяти и ререндером списка из перезаписанного массива
@@ -125,24 +141,22 @@ addWarButton.addEventListener('click', () => {
   const yearsWar = addWarYearsInput.value.trim()
   if (!text || !yearsWar) return
   items.push({ title: text, years: yearsWar })
-  const query = newInput.value.toLowerCase()
-  render(items.filter((item) =>
-    item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query)))
+  savedArray()
+  filtered()
   addWarInput.value = ''
   addWarYearsInput.value = ''
 })
 
-//обработка клика внутри списка ul по ближайшему дочернему li
+//обработка клика внутри списка ul по ближайшему дочернему li с удалением пункта из списка ul
 list.addEventListener('click', (event) => {
   const li = event.target.closest('li')
   if (!li) return
   const text = li.textContent
-  const i = items.findIndex((item) => item.title + ' (' + item.years + ')' === text)
+  const i = items.findIndex((item) => item.title + ' (Даты начала и завешения: ' + item.years + ')' === text)
   if (i === -1) return
   items.splice(i, 1) //splice вырезает данные из массива
-  const query = newInput.value.toLowerCase() //реюз фильтра
-  render(items.filter((item) =>
-    item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query)))
+  savedArray()
+  filtered()
 })
 
 //THE FIFTH TASK***************************************************************************************
