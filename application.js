@@ -103,11 +103,12 @@ function render(array) {
   list.replaceChildren()
   array.forEach((item) => {
     const li = document.createElement('li')
-    li.textContent = item.title + ' (Даты начала и завешения: ' + item.years + ')'
+    li.textContent = item.title + ' (Даты начала и завершения: ' + item.years + ')'
     list.append(li)
   })
 }
 
+loadArray()
 //стартовая загрузка массива с учетом того, что input пустой, следовательно будет выведен весь массив, т.к. любая строка содержит пустой кусок
 render(items)
 
@@ -118,15 +119,16 @@ function filtered() {
     item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query)))
 }
 
-//функция сохранения и ререндера массива с изпользованием данных из кеша браузера
-function savedArray() {
+//функция сохранения массива
+function saveArray() {
   localStorage.setItem('wars', JSON.stringify(items))
-  const savedArr = localStorage.getItem('wars')
-  if (savedArr) {
-    items.splice(0, items.length,
-      ...JSON.parse(savedArr)
-    )
-  }
+}
+
+//функция загрузки массива
+function loadArray() {
+  const saved = localStorage.getItem('wars')
+  if (!saved) return
+  items.splice(0, items.length, ...JSON.parse(saved))
 }
 
 //фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
@@ -141,7 +143,7 @@ addWarButton.addEventListener('click', () => {
   const yearsWar = addWarYearsInput.value.trim()
   if (!text || !yearsWar) return
   items.push({ title: text, years: yearsWar })
-  savedArray()
+  saveArray()
   filtered()
   addWarInput.value = ''
   addWarYearsInput.value = ''
@@ -152,10 +154,10 @@ list.addEventListener('click', (event) => {
   const li = event.target.closest('li')
   if (!li) return
   const text = li.textContent
-  const i = items.findIndex((item) => item.title + ' (Даты начала и завешения: ' + item.years + ')' === text)
+  const i = items.findIndex((item) => item.title + ' (Даты начала и завершения: ' + item.years + ')' === text)
   if (i === -1) return
   items.splice(i, 1) //splice вырезает данные из массива
-  savedArray()
+  saveArray()
   filtered()
 })
 
