@@ -37,7 +37,7 @@ const TFT = document.querySelector('.theFourthTask')
 
 //создание нового div
 const newDiv = document.createElement('div')
-newDiv.textContent = 'Военные конфликты 20-го века'
+newDiv.textContent = 'Самые кровопролитные войны в истории нашей эры'
 newDiv.className = 'armedClashes'
 TFT.appendChild(newDiv)
 
@@ -68,12 +68,24 @@ addWarButton.textContent = 'Добавить'
 TFT.appendChild(addWarButton)
 
 //создание массива
-const items = [
+/* const items = [
   'Ирано-иракская война 1980-1988',
   'Шестидневная война 05.06.1967 - 10.06.1967',
   'Война в Персидском заливе 1990-1991',
   'Афганская война 1979-1989',
   'Вьетнамская война 1955-1975'
+] */
+const items = [
+  { title: 'Наполеоновские войны', years: '1799-1815' },
+  { title: 'Гражданская война в России', years: '1917-1923' },
+  { title: 'Дунганское восстание', years: '1862' },
+  { title: 'Восстание Ай Лушаня', years: '8 век нашей эры' },
+  { title: 'Первая мировая война', years: '1914-1918' },
+  { title: 'Войны Тамерлана', years: '14 век' },
+  { title: 'Восстание тайпинов', years: '1850-1864' },
+  { title: 'Захват Китая маньчжурской династией', years: '1616-1662' },
+  { title: 'Войны Монгольской империи', years: '13-15 века' },
+  { title: 'Вторая мировая война', years: '1939-1945' }
 ]
 
 //ссылка на ul после его добавления в DOM
@@ -84,7 +96,7 @@ function render(array) {
   list.replaceChildren()
   array.forEach((item) => {
     const li = document.createElement('li')
-    li.textContent = item
+    li.textContent = item.title + ' (' + item.years + ')'
     list.append(li)
   })
 }
@@ -96,7 +108,7 @@ render(items)
 newInput.addEventListener('input', () => {
   const query = newInput.value.toLowerCase()
   render(items.filter((item) =>
-    item.toLowerCase().includes(query)))
+    item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query)))
 })
 
 /* обработка клика по кнопке addWarButton с изменением массива в памяти и ререндером списка из перезаписанного массива
@@ -112,7 +124,7 @@ addWarButton.addEventListener('click', () => {
 })
 
 //обработка клика внутри списка ul по ближайшему дочернему li
-list.addEventListener('click', () => {
+list.addEventListener('click', (event) => {
   const li = event.target.closest('li')
   if (!li) return
   const text = li.textContent
