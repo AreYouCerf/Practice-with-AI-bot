@@ -57,8 +57,15 @@ TFT.appendChild(newUl)
 const addWarInput = document.createElement('input')
 addWarInput.className = 'addWarInput'
 addWarInput.type = 'text'
-addWarInput.placeholder = 'Добавьте событие в список выше...'
+addWarInput.placeholder = 'Введите название события...'
 TFT.appendChild(addWarInput)
+
+//создание input для ввода новых данных массива
+const addWarYearsInput = document.createElement('input')
+addWarYearsInput.className = 'addWarYearsInput'
+addWarYearsInput.type = 'text'
+addWarYearsInput.placeholder = 'Введите даты начала и завершения события...'
+TFT.appendChild(addWarYearsInput)
 
 //создание кнопки для добавления данных в массив items
 const addWarButton = document.createElement('button')
@@ -112,15 +119,17 @@ newInput.addEventListener('input', () => {
 })
 
 /* обработка клика по кнопке addWarButton с изменением массива в памяти и ререндером списка из перезаписанного массива
-с реиспользованием ранее созданного фильтра */
+с реюзом ранее созданного фильтра */
 addWarButton.addEventListener('click', () => {
   const text = addWarInput.value.trim()
-  if (!text) return
-  items.push(text)
+  const yearsWar = addWarYearsInput.value.trim()
+  if (!text || !yearsWar) return
+  items.push({ title: text, years: yearsWar })
   const query = newInput.value.toLowerCase()
   render(items.filter((item) =>
-    item.toLowerCase().includes(query)))
+    item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query)))
   addWarInput.value = ''
+  addWarYearsInput.value = ''
 })
 
 //обработка клика внутри списка ul по ближайшему дочернему li
@@ -128,12 +137,12 @@ list.addEventListener('click', (event) => {
   const li = event.target.closest('li')
   if (!li) return
   const text = li.textContent
-  const i = items.indexOf(text)
+  const i = items.findIndex((item) => item.title + ' (' + item.years + ')' === text)
   if (i === -1) return
   items.splice(i, 1) //splice вырезает данные из массива
   const query = newInput.value.toLowerCase() //реюз фильтра
   render(items.filter((item) =>
-    item.toLowerCase().includes(query)))
+    item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query)))
 })
 
 //THE FIFTH TASK***************************************************************************************

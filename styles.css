@@ -285,7 +285,8 @@ button {
   transform: scale(1.02);
 }
 
-.addWarInput {
+.addWarInput,
+.addWarYearsInput {
   box-sizing: border-box;
   width: 100%;
   background: #C0C0C0;
