@@ -158,13 +158,17 @@ async function loadArray() {
       items.splice(0, items.length, ...data)
     }
   } catch (error) {
-    console.log('Не удалось pfuhepbnm wars.json', error)
+    console.log('Не удалось загрузить wars.json', error)
   }
 }
 
-//фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
+/* фильтр содержимого по каждому введенному знаку в нижнем регистре
+debounce - добавление задержки перед фильтрацией, чтобы по каждому введенному символу
+не происходила пересборка DOM */
+let timer
 newInput.addEventListener('input', () => {
-  filtered()
+  clearTimeout(timer)
+  timer = setTimeout(filtered, 500)
 })
 
 /* обработка клика по кнопке addWarButton с изменением массива в памяти и ререндером списка из перезаписанного массива
