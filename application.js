@@ -137,7 +137,13 @@ function saveArray() {
 function loadArray() {
   const saved = localStorage.getItem('wars')
   if (!saved) return
-  items.splice(0, items.length, ...JSON.parse(saved))
+  try {
+    const parsed = JSON.parse(saved)
+    if (!Array.isArray(parsed)) return
+    items.splice(0, items.length, ...parsed)
+  } catch (error) {
+    console.log('Не удалось прочитать wars', error)
+  }
 }
 
 //фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
