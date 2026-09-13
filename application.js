@@ -140,7 +140,8 @@ newInput.addEventListener('input', () => {
 
 /* обработка клика по кнопке addWarButton с изменением массива в памяти и ререндером списка из перезаписанного массива
 с реюзом ранее созданного фильтра */
-addWarButton.addEventListener('click', () => {
+
+/* addWarButton.addEventListener('click', () => {
   const text = addWarInput.value.trim()
   const yearsWar = addWarYearsInput.value.trim()
   if (!text || !yearsWar) return
@@ -149,13 +150,31 @@ addWarButton.addEventListener('click', () => {
   filtered()
   addWarInput.value = ''
   addWarYearsInput.value = ''
+}) */
+
+//rework обработки клика этапом выше с добавление обработчика нажатия клавиши Enter по обоим полям ввода
+function addWar() {
+  const text = addWarInput.value.trim()
+  const yearsWar = addWarYearsInput.value.trim()
+  if (!text || !yearsWar) return
+  items.push({ title: text, years: yearsWar })
+  saveArray()
+  filtered()
+  addWarInput.value = ''
+  addWarYearsInput.value = ''
+}
+addWarButton.addEventListener('click', addWar)
+addWarInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') addWar()
+})
+addWarYearsInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') addWar()
 })
 
 //обработка клика внутри списка ul по ближайшему дочернему li с удалением пункта из списка ul
 list.addEventListener('click', (event) => {
   const li = event.target.closest('li')
   if (!li) return
-  const text = li.textContent
   const i = items.findIndex((item) => item.title === li.dataset.title && item.years === li.dataset.years)
   if (i === -1) return
   items.splice(i, 1) //splice вырезает данные из массива
