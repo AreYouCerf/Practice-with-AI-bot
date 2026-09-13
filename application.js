@@ -157,12 +157,12 @@ function addWar() {
   const text = addWarInput.value.trim()
   const yearsWar = addWarYearsInput.value.trim()
   if (!text || !yearsWar) return
-
-  //для отсутствия возможности создавать дубли в массиве используем конструкцию ниже перед push
   const exists = items.some((item) =>
-    item.title.toLowerCase() === text && item.years.toLowerCase() === yearsWar)
-  if (exists) return
-
+    item.title.toLowerCase() === text.toLowerCase() && item.years.toLowerCase() === yearsWar.toLowerCase())
+  if (exists) {
+    alert('Такая запись уже существует.')
+    return
+  }
   items.push({ title: text, years: yearsWar })
   saveArray()
   filtered()
