@@ -117,9 +117,12 @@ function render(array) {
   })
 }
 
-loadArray()
-//стартовая загрузка массива с учетом того, что input пустой, следовательно будет выведен весь массив, т.к. любая строка содержит пустой кусок
-render(items)
+/* loadArray()
+стартовая загрузка массива с учетом того, что input пустой, следовательно будет выведен весь массив, т.к. любая строка содержит пустой кусок
+render(items) */
+
+//rework стартовой загрузки массива
+loadArray().then(() => render(items))
 
 //функция фильтра содержимого
 function filtered() {
@@ -134,16 +137,22 @@ function saveArray() {
 }
 
 //функция загрузки массива
-function loadArray() {
+async function loadArray() {
   const saved = localStorage.getItem('wars')
-  if (!saved) return
-  try {
-    const parsed = JSON.parse(saved)
-    if (!Array.isArray(parsed)) return
-    items.splice(0, items.length, ...parsed)
-  } catch (error) {
-    console.log('Не удалось прочитать wars', error)
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved)
+      if (Array.isArray(parsed)) {
+        items.splice(0, items.length, ...parsed)
+      }
+    } catch (error) {
+      console.log('Не удалось получить wars', error)
+    }
+    return
   }
+  const res = await fetch('wars.json')
+  const data = await res.json()
+  items.splice(0, items.length, ...data)
 }
 
 //фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
