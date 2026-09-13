@@ -103,6 +103,8 @@ function render(array) {
   list.replaceChildren()
   array.forEach((item) => {
     const li = document.createElement('li')
+    li.dataset.title = item.title
+    li.dataset.years = item.years
     li.textContent = item.title + ' (Даты начала и завершения: ' + item.years + ')'
     list.append(li)
   })
@@ -154,7 +156,7 @@ list.addEventListener('click', (event) => {
   const li = event.target.closest('li')
   if (!li) return
   const text = li.textContent
-  const i = items.findIndex((item) => item.title + ' (Даты начала и завершения: ' + item.years + ')' === text)
+  const i = items.findIndex((item) => item.title === li.dataset.title && item.years === li.dataset.years)
   if (i === -1) return
   items.splice(i, 1) //splice вырезает данные из массива
   saveArray()
