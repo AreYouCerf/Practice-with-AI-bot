@@ -231,6 +231,13 @@ addWarYearsInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') addWar()
 })
 
+//очистка поля при нажатии клавиши escape
+newInput.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return
+  newInput.value = ''
+  filtered()
+})
+
 //обработка клика внутри списка ul по ближайшему дочернему li с удалением пункта из списка ul
 list.addEventListener('click', (event) => {
   const li = event.target.closest('li')
