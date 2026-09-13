@@ -48,6 +48,13 @@ newInput.type = 'text'
 newInput.placeholder = 'Введите поисковый запрос...'
 TFT.appendChild(newInput)
 
+//создание кнопки сортировки по названию
+const sortNameButton = document.createElement('button')
+sortNameButton.className = 'sortNameButton'
+sortNameButton.type = 'button'
+sortNameButton.textContent = 'Сортировать по названию'
+TFT.appendChild(sortNameButton)
+
 //создание нового списка ul
 const newUl = document.createElement('ul')
 newUl.className = 'list'
@@ -187,6 +194,16 @@ list.addEventListener('click', (event) => {
   saveArray()
   filtered()
 })
+
+//функция сортировки по названию
+function sortByName() {
+  items.sort((a, b) => a.title.localeCompare(b.title, 'ru'))
+  saveArray()
+  filtered()
+}
+
+//обработчик клика по кнопке сортировки
+sortNameButton.addEventListener('click', sortByName)
 
 //THE FIFTH TASK***************************************************************************************
 

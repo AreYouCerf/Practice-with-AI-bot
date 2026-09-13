@@ -265,7 +265,8 @@ button {
   display: block;
 }
 
-.addWarButton {
+.addWarButton,
+.sortNameButton {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -281,7 +282,8 @@ button {
   color: #2D1B69;
 }
 
-.addWarButton:hover {
+.addWarButton:hover,
+.sortNameButton:hover {
   transform: scale(1.02);
 }
 
