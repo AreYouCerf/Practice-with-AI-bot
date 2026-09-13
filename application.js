@@ -48,6 +48,12 @@ newInput.type = 'text'
 newInput.placeholder = 'Введите поисковый запрос...'
 TFT.appendChild(newInput)
 
+//создание счетчика найденных элементов
+const countElements = document.createElement('h3')
+countElements.className = 'countElements'
+countElements.textContent = 'Поисковый запрос отсутствует.'
+TFT.appendChild(countElements)
+
 //создание кнопки сортировки по названию
 const sortNameButton = document.createElement('button')
 sortNameButton.className = 'sortNameButton'
@@ -127,8 +133,15 @@ loadArray().then(() => render(items))
 //функция фильтра содержимого
 function filtered() {
   const query = newInput.value.toLowerCase()
-  render(items.filter((item) =>
-    item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query)))
+  const shownElements = items.filter((item) =>
+    item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query))
+  if (!query) {
+    countElements.textContent = 'Поисковый запрос отсутствует.'
+    render(items)
+  } else {
+    render(shownElements)
+    countElements.textContent = 'Найдено: ' + shownElements.length
+  }
 }
 
 //функция сохранения массива

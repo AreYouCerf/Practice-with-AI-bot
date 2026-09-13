@@ -157,7 +157,8 @@ button {
   font-size: 1.25rem;
 }
 
-.armedClashes {
+.armedClashes,
+.countElements {
   box-sizing: border-box;
   width: 100%;
   background: #C8FF3D;
@@ -168,6 +169,10 @@ button {
   background: #C8FF3D;
   text-align: center;
   padding: 20px;
+}
+
+.countElements {
+  margin: 0;
 }
 
 .findWarInput {
