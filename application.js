@@ -150,9 +150,16 @@ async function loadArray() {
     }
     return
   }
-  const res = await fetch('wars.json')
-  const data = await res.json()
-  items.splice(0, items.length, ...data)
+  try {
+    const res = await fetch('wars.json')
+    if (!res.ok) throw new Error('HTTP' + res.status)
+    const data = await res.json()
+    if (Array.isArray(data)) {
+      items.splice(0, items.length, ...data)
+    }
+  } catch (error) {
+    console.log('Не удалось pfuhepbnm wars.json', error)
+  }
 }
 
 //фильтр содержимого по каждому введенному знаку, учитывающий строчное написание и заглавное toLowerCase
