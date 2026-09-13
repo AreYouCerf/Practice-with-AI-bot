@@ -196,8 +196,10 @@ list.addEventListener('click', (event) => {
 })
 
 //функция сортировки по названию
+let nameDir = 1
 function sortByName() {
-  items.sort((a, b) => a.title.localeCompare(b.title, 'ru'))
+  items.sort((a, b) => a.title.localeCompare(b.title, 'ru') * nameDir)
+  nameDir = -nameDir
   saveArray()
   filtered()
 }
