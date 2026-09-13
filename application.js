@@ -142,6 +142,14 @@ function filtered() {
     render(shownElements)
     countElements.textContent = 'Найдено: ' + shownElements.length
   }
+  if (query && shownElements.length === 0) {
+    list.replaceChildren()
+    const emptyElementLi = document.createElement('li')
+    emptyElementLi.textContent = 'В списке ничего не найдено'
+    list.append(emptyElementLi)
+    countElements.textContent = 'Найдено: 0'
+    return
+  }
 }
 
 //функция сохранения массива
