@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="application.js" defer></script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="variables-of-theme.css">
+  <script src="application.js" defer></script>
 </head>
 
 <body>
@@ -39,6 +40,33 @@
     </form>
     <span class="resultOfSubmit" id="resultOfSubmit"></span>
   </section>
+
+  <button id="themeToggle" class="theme-btn" type="button">
+    <svg viewBox="0 0 50 50" width="50" height="50">
+      <circle cx="25" cy="25" r="9" fill="#FFA500" />
+      <g stroke="#FFA500" stroke-width="3" stroke-linecap="round">
+        <line x1="25" y1="4" x2="25" y2="10" />
+        <line x1="25" y1="40" x2="25" y2="46" />
+        <line x1="4" y1="25" x2="10" y2="25" />
+        <line x1="40" y1="25" x2="46" y2="25" />
+        <line x1="14.39" y1="14.39" x2="10.15" y2="10.15" />
+        <line x1="35.61" y1="14.39" x2="39.85" y2="10.15" />
+        <line x1="14.39" y1="35.61" x2="10.15" y2="39.85" />
+        <line x1="35.61" y1="35.61" x2="39.85" y2="39.85" />
+      </g>
+    </svg>
+  </button>
+
+  <!-- <svg viewBox="0 0 50 50" width="50" height="50">
+    <g fill="#3A3F58">
+      <path d="M40.35,32.85 
+             A 20,20 0 1,1 24.5,4.5 
+             A 16,16 0 0,0 40.35,32.85 Z" />
+      <path d="M33,4 Q33,8 37,8 Q33,8 33,12 Q33,8 29,8 Q33,8 33,4 Z" stroke="#3A3F58" stroke-width="1.5"
+        stroke-linejoin="round" />
+    </g>
+  </svg> -->
+
 </body>
 
 </html>

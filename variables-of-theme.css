@@ -1,0 +1,19 @@
+:root {
+  --background: #F4F4F9;
+  --panels: #E8E8F4;
+  --text: #0B0813;
+  --text-back: #D300C5;
+  --buttons: #00A8E8;
+  --accent: #FFB703;
+  --input: #C0C0C0;
+}
+
+:root[data-theme="dark"] {
+  --background: #0B0813;
+  --panels: #161224;
+  --text: #F4F4F9;
+  --text-back: #FF00E5;
+  --buttons: #00F0FF;
+  --accent: #FFD000;
+  --input: #C0C0C0;
+}

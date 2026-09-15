@@ -1,7 +1,10 @@
+@import url("variables-of-theme.css");
+
 body {
   margin: 0px 100px;
-  background: #000;
+  background: var(--background);
   font-family: 'Times New Roman', Times, serif;
+  font-size: 62.5%;
 }
 
 button {
@@ -12,8 +15,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
-  margin: 30px auto 30px auto;
+  font-size: 3rem;
+  margin: 0px auto;
 }
 
 .greeting {
@@ -23,12 +26,14 @@ button {
   align-items: center;
   width: 100%;
   padding: 20px;
-  color: #C8FF3D;
-  max-width: 800px;
-  background: #2D1B69;
+  color: var(--text);
   margin: 0;
   border: none;
-  border-radius: 45px;
+  position: fixed;
+  top: 0;
+  left: auto;
+  z-index: 1000;
+  background: var(--background);
 }
 
 .buttonMinus,
@@ -37,14 +42,20 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #C8FF3D;
+  background: var(--buttons);
   border: none;
   border-radius: 45px;
   width: 100%;
-  font-size: 4rem;
+  font-size: 2rem;
   cursor: pointer;
-  color: #2D1B69;
+  color: var(--text);
   padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.buttonMinus:hover,
+.buttonPlus:hover {
+  transform: scale(0.95);
 }
 
 .theSecondTask {
@@ -55,11 +66,11 @@ button {
   align-items: center;
   justify-content: center;
   gap: 30px;
-  background: #2D1B69;
+  background: var(--panels);
   padding: 20px;
   border: none;
   border-radius: 45px;
-  margin: 0 auto 30px auto;
+  margin: 100px auto 30px auto;
 }
 
 .buttons {
@@ -75,12 +86,12 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #C8FF3D;
-  font-size: 4rem;
+  background: var(--text-back);
+  font-size: 3rem;
   padding: 20px;
   border: none;
   border-radius: 45px;
-  color: #2D1B69;
+  color: var(--text);
   width: 100%;
 }
 
@@ -91,7 +102,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 30px;
-  background: #C8FF3D;
+  background: var(--panels);
   padding: 20px;
   border: none;
   border-radius: 45px;
@@ -102,13 +113,13 @@ button {
 .hidden {
   box-sizing: border-box;
   width: 100%;
-  background: #2D1B69;
-  font-size: 4rem;
+  background: var(--text-back);
+  font-size: 3rem;
   padding: 30px;
   border: none;
   border-radius: 45px;
   display: none;
-  color: #C8FF3D;
+  color: var(--text);
   text-align: center;
 }
 
@@ -118,10 +129,15 @@ button {
   padding: 30px;
   border: none;
   border-radius: 45px;
-  font-size: 4rem;
+  font-size: 2rem;
   cursor: pointer;
-  background: #2D1B69;
-  color: #C8FF3D;
+  background: var(--buttons);
+  color: var(--text);
+  transition: transform 0.2s ease;
+}
+
+.contentButton:hover {
+  transform: scale(0.95);
 }
 
 .unhidden {
@@ -135,20 +151,20 @@ button {
   align-items: center;
   justify-content: start;
   gap: 30px;
-  background: #2D1B69;
+  background: var(--panels);
   padding: 20px;
   border: none;
   border-radius: 45px;
   margin: 0 auto 30px auto;
   min-height: 711px;
-  color: #2D1B69;
+  color: var(--text);
   max-width: 800px;
 }
 
 .list {
   box-sizing: border-box;
   width: 100%;
-  background: #C8FF3D;
+  background: color-mix(in srgb, var(--text-back) 20%, transparent);
   border: none;
   border-radius: 45px;
   padding: 20px;
@@ -161,29 +177,30 @@ button {
 .countElements {
   box-sizing: border-box;
   width: 100%;
-  background: #C8FF3D;
+  background: var(--text-back);
   font-size: 3rem;
   border: none;
   border-radius: 45px;
   padding: 10px;
-  background: #C8FF3D;
   text-align: center;
   padding: 20px;
+  font-weight: 400;
 }
 
 .countElements {
   margin: 0;
+  background: color-mix(in srgb, var(--text-back) 20%, transparent);
 }
 
 .findWarInput {
   box-sizing: border-box;
   width: 100%;
-  background: #C0C0C0;
+  background: var(--input);
   border: none;
   border-radius: 45px;
   padding: 20px;
-  color: #2D1B69;
-  font-size: 2rem;
+  color: var(--text);
+  font-size: 1.5rem;
 }
 
 .clientInfo {
@@ -192,9 +209,8 @@ button {
   flex-direction: column;
   align-items: start;
   row-gap: 10px;
-  color: #2D1B69;
-  font-size: 1.5rem;
-  background: #C8FF3D;
+  color: var(--text);
+  background: var(--panels);
   padding: 20px;
   border: none;
   border-radius: 45px;
@@ -215,7 +231,7 @@ button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: #2D1B69;
+  background: var(--buttons);
   border: none;
   border-radius: 45px;
   padding: 20px;
@@ -225,44 +241,44 @@ button {
   max-height: fit-content;
   cursor: pointer;
   transition: transform 0.2s ease;
-  color: #C8FF3D;
+  color: var(--text);
 }
 
 .clientInfo button:hover {
-  transform: scale(1.02);
+  transform: scale(0.95);
 }
 
 .clientInfo input {
   box-sizing: border-box;
   width: 100%;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border: none;
   border-top-left-radius: 15px;
   border-top-right-radius: 45px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 45px;
-  background: #C0C0C0;
+  background: var(--input);
   padding: 20px;
-  color: #2D1B69;
+  color: var(--text);
 }
 
 .clientInfo label {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .resultOfSubmit {
   box-sizing: border-box;
   position: absolute;
-  top: 735px;
+  top: 627px;
   left: auto;
-  background: #C0C0C0;
+  background: var(--accent);
   border: none;
   border-radius: 45px;
   padding: 10px 20px;
   margin: 0;
   display: none;
-  font-size: 1.25rem;
-  color: #FF0000;
+  font-size: 1.5rem;
+  color: var(--text);
   pointer-events: none;
 }
 
@@ -275,7 +291,7 @@ button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: #C8FF3D;
+  background: var(--buttons);
   border: none;
   border-radius: 45px;
   padding: 20px;
@@ -284,22 +300,52 @@ button {
   max-height: fit-content;
   cursor: pointer;
   transition: transform 0.2s ease;
-  color: #2D1B69;
+  color: var(--text);
 }
 
 .addWarButton:hover,
 .sortNameButton:hover {
-  transform: scale(1.02);
+  transform: scale(0.95);
 }
 
 .addWarInput,
 .addWarYearsInput {
   box-sizing: border-box;
   width: 100%;
-  background: #C0C0C0;
+  background: var(--input);
   border: none;
   border-radius: 45px;
   padding: 20px;
-  color: #2D1B69;
-  font-size: 2rem;
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+.theme-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  transform: translateZ(0);
+  background: none;
+  z-index: 1000;
+}
+
+.theme-btn:hover {
+  transform: scale(1.05) translateZ(0);
+}
+
+.theme-btn img,
+.theme-btn svg {
+  backface-visibility: hidden;
 }
