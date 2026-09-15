@@ -116,9 +116,10 @@ function render(array) {
   list.replaceChildren()
   array.forEach((item) => {
     const li = document.createElement('li')
-    li.dataset.title = item.title
-    li.dataset.years = item.years
-    li.textContent = `${item.title} (Даты начала и завершения: ${item.years})`
+    const { title, years } = item
+    li.dataset.title = title
+    li.dataset.years = years
+    li.textContent = `${title} (Даты начала и завершения: ${years})`
     list.append(li)
   })
 }
@@ -133,8 +134,8 @@ loadArray().then(() => render(items))
 //функция фильтра содержимого
 function filtered() {
   const query = newInput.value.toLowerCase()
-  const shownElements = items.filter((item) =>
-    item.title.toLowerCase().includes(query) || item.years.toLowerCase().includes(query))
+  const shownElements = items.filter(({ title, years }) =>
+    title.toLowerCase().includes(query) || years.toLowerCase().includes(query))
   if (!query) {
     countElements.textContent = 'Поисковый запрос отсутствует.'
     render(items)
