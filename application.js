@@ -118,7 +118,7 @@ function render(array) {
     const li = document.createElement('li')
     li.dataset.title = item.title
     li.dataset.years = item.years
-    li.textContent = item.title + ' (Даты начала и завершения: ' + item.years + ')'
+    li.textContent = `${item.title} (Даты начала и завершения: ${item.years})`
     list.append(li)
   })
 }
@@ -140,7 +140,7 @@ function filtered() {
     render(items)
   } else {
     render(shownElements)
-    countElements.textContent = 'Найдено: ' + shownElements.length
+    countElements.textContent = `Найдено: ${shownElements.length}`
   }
   if (query && shownElements.length === 0) {
     list.replaceChildren()
