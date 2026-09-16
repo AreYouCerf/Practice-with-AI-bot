@@ -1,20 +1,31 @@
-const themeToggleBtn = document.getElementById('themeToggle')
-const currentTheme = localStorage.getItem('theme')
-if (currentTheme) {
-  document.documentElement.setAttribute('data-theme', currentTheme)
-} else {
+/* const themeToggleButton = document.getElementById('themeToggle')
+function getInitialTheme() {
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme) return savedTheme
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  if (prefersDark) {
-    document.documentElement.setAttribute('data-theme', 'dark')
-  }
+  return prefersDark ? 'dark' : 'light'
 }
-themeToggleBtn.addEventListener('click', () => {
-  let theme = document.documentElement.getAttribute('data-theme')
-  if (theme === 'dark') {
-    document.documentElement.removeAttribute('data-theme')
-    localStorage.setItem('theme', 'light')
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark')
-    localStorage.setItem('theme', 'dark')
-  }
-})
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme)
+  localStorage.setItem('theme', theme)
+}
+const currentTheme = getInitialTheme()
+setTheme(currentTheme)
+if (themeToggleButton) {
+  themeToggleButton.addEventListener('click', () => {
+    const themeIsDark = document.documentElement.getAttribute('data-theme') === 'dark'
+    setTheme(themeIsDark ? 'light' : 'dark')
+  })
+} */
+
+const themeToggleButton = document.getElementById('themeToggle');
+
+if (themeToggleButton) {
+  themeToggleButton.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+}

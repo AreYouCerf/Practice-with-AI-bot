@@ -2,6 +2,7 @@
 <html lang="ru">
 
 <head>
+  <script src="js/sync-theme.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
@@ -41,8 +42,9 @@
     <span class="resultOfSubmit" id="resultOfSubmit"></span>
   </section>
 
-  <button id="themeToggle" class="theme-btn" type="button">
-    <svg viewBox="0 0 50 50" width="50" height="50">
+  <button id="themeToggle" class="themeButton" type="button">
+
+    <svg class="sunIcon" viewBox="0 0 50 50" width="50" height="50">
       <circle cx="25" cy="25" r="9" fill="#FFA500" />
       <g stroke="#FFA500" stroke-width="3" stroke-linecap="round">
         <line x1="25" y1="4" x2="25" y2="10" />
@@ -55,18 +57,19 @@
         <line x1="35.61" y1="35.61" x2="39.85" y2="39.85" />
       </g>
     </svg>
-  </button>
-  <script src="js/theme.js"></script>
-  <!-- <svg viewBox="0 0 50 50" width="50" height="50">
-    <g fill="#3A3F58">
-      <path d="M40.35,32.85 
+
+    <svg class="moonIcon" viewBox="0 0 50 50" width="50" height="50">
+      <g fill="#3A3F58" transform="translate(3, 3)">
+        <path d="M40.35,32.85 
              A 20,20 0 1,1 24.5,4.5 
              A 16,16 0 0,0 40.35,32.85 Z" />
-      <path d="M33,4 Q33,8 37,8 Q33,8 33,12 Q33,8 29,8 Q33,8 33,4 Z" stroke="#3A3F58" stroke-width="1.5"
-        stroke-linejoin="round" />
-    </g>
-  </svg> -->
+        <path d="M33,4 Q33,8 37,8 Q33,8 33,12 Q33,8 29,8 Q33,8 33,4 Z" stroke="#3A3F58" stroke-width="1.5"
+          stroke-linejoin="round" />
+      </g>
+    </svg>
 
+  </button>
+  <script src="js/theme.js"></script>
 </body>
 
 </html>

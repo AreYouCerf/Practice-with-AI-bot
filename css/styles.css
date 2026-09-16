@@ -320,7 +320,7 @@ button {
   font-size: 1.5rem;
 }
 
-.theme-btn {
+.themeButton {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -330,22 +330,38 @@ button {
   padding: 10px;
   margin: 0;
   cursor: pointer;
-  transition: transform 0.3s ease;
   position: fixed;
   bottom: 15px;
   right: 15px;
   transition: transform 0.3s ease;
   will-change: transform;
   transform: translateZ(0);
-  background: none;
   z-index: 1000;
+  background: none;
 }
 
-.theme-btn:hover {
-  transform: scale(1.05) translateZ(0);
+.themeButton:hover {
+  transform: scale(0.9) translateZ(0);
 }
 
-.theme-btn img,
-.theme-btn svg {
+.themeButton svg {
   backface-visibility: hidden;
+  width: 70px;
+  height: 70px;
+}
+
+#themeToggle .sunIcon {
+  display: none !important;
+}
+
+#themeToggle .moonIcon {
+  display: block !important;
+}
+
+html[data-theme='dark'] #themeToggle .sunIcon {
+  display: block !important;
+}
+
+html[data-theme='dark'] #themeToggle .moonIcon {
+  display: none !important;
 }
