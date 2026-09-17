@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startTimer() {
     if (intervalId !== null) { return }
+    startTimerButton.disabled = true
     intervalId = setInterval(() => {
       seconds += 1
       if (timerDisplay) {
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function stopTimer() {
+    startTimerButton.disabled = false
     if (intervalId !== null) {
       clearInterval(intervalId)
       intervalId = null
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function clearTimer() {
+    startTimerButton.disabled = false
     stopTimer()
     seconds = 0
     if (timerDisplay) {

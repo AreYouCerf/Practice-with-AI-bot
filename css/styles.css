@@ -508,3 +508,13 @@ html[data-theme='dark'] #themeToggle .moonIcon {
   padding: 20px;
   margin: 0;
 }
+
+.startButtonTimer:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.startButtonTimer:disabled:hover {
+  transform: scale(1);
+}
