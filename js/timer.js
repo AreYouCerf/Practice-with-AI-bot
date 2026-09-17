@@ -20,9 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     timerDisplay.textContent = formatTime(seconds)
   }
 
+  if (startTimerButton) startTimerButton.disabled = false
+  if (stopTimerButton) stopTimerButton.disabled = true
+  if (clearTimerButton) clearTimerButton.disabled = true
+
   function startTimer() {
     if (intervalId !== null) { return }
-    startTimerButton.disabled = true
+    if (startTimerButton) startTimerButton.disabled = true
+    if (stopTimerButton) stopTimerButton.disabled = false
+    if (clearTimerButton) clearTimerButton.disabled = false
     intervalId = setInterval(() => {
       seconds += 1
       if (timerDisplay) {
@@ -32,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function stopTimer() {
-    startTimerButton.disabled = false
     if (intervalId !== null) {
       clearInterval(intervalId)
       intervalId = null
@@ -40,11 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
         timerDisplay.textContent = formatTime(seconds)
       }
     }
+    if (startTimerButton) startTimerButton.disabled = false
+    if (stopTimerButton) stopTimerButton.disabled = true
+    if (clearTimerButton) clearTimerButton.disabled = false
   }
 
   function clearTimer() {
-    startTimerButton.disabled = false
+    if (startTimerButton) startTimerButton.disabled = false
+    if (stopTimerButton) stopTimerButton.disabled = true
     stopTimer()
+    if (clearTimerButton) clearTimerButton.disabled = true
     seconds = 0
     if (timerDisplay) {
       timerDisplay.textContent = formatTime(seconds)

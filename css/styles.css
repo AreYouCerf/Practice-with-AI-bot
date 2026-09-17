@@ -509,12 +509,16 @@ html[data-theme='dark'] #themeToggle .moonIcon {
   margin: 0;
 }
 
-.startButtonTimer:disabled {
+.startButtonTimer:disabled,
+.stopButtonTimer:disabled,
+.clearButtonTimer:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
 }
 
-.startButtonTimer:disabled:hover {
+.startButtonTimer:disabled:hover,
+.stopButtonTimer:disabled:hover,
+.clearButtonTimer:disabled:hover {
   transform: scale(1);
 }
